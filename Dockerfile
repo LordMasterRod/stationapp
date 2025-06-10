@@ -1,17 +1,15 @@
 # STAGE DE BUILD
 # Utilise une image Maven avec un JDK pour compiler ton application
-FROM maven:3.9.9-openjdk-17 AS build
+FROM maven:3-openjdk-17 AS build  # <-- MODIFIE CETTE LIGNE
 
 # Définit le répertoire de travail dans le conteneur
 WORKDIR /app
 
 # Copie le fichier pom.xml et les dépendances pour les télécharger d'abord
-# Cela permet au cache Docker de fonctionner plus efficacement si seuls les fichiers sources changent
 COPY pom.xml .
 COPY src ./src
 
 # Exécute la commande Maven pour compiler et empaqueter l'application
-# -DskipTests: pour sauter les tests pendant le build Docker (tu devrais les faire avant)
 RUN mvn clean package -DskipTests
 
 # STAGE D'EXÉCUTION
@@ -22,9 +20,8 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copie le fichier JAR généré à partir du stage de build
-# Assure-toi que le nom du JAR ici correspond au nom réel de ton fichier JAR
-# Exemple : stationapp-0.0.1-SNAPSHOT.jar (vérifie ton pom.xml)
-COPY --from=build /stationapp/target/stationapp-0.0.1-SNAPSHOT.jar app.jar
+# N'oublie pas de bien vérifier le nom de ton JAR ici !
+COPY --from=build /app/target/stationapp-0.0.1-SNAPSHOT.jar app.jar # <-- Vérifie bien ce nom
 
 # Expose le port sur lequel ton application Spring Boot écoute (généralement 8080)
 EXPOSE 8080
