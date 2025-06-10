@@ -82,7 +82,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // Assurez-vous que toutes vos origines frontend sont bien incluses ici
-        configuration.setAllowedOrigins(List.of("http://localhost:8080", "http://localhost:8081", "http://192.168.111.157:8081"));
+        configuration.setAllowedOrigins(List.of("https://stationlp.onrender.com","http://localhost:8080", "http://localhost:8081", "http://192.168.111.157:8081"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Cache-Control", "Accept"));
         configuration.setAllowCredentials(true);
