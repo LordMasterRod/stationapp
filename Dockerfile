@@ -21,7 +21,7 @@ WORKDIR /app
 
 # Copie le fichier JAR généré à partir du stage de build
 # N'oublie pas de bien vérifier le nom de ton JAR ici !
-COPY --from=build /app/target/stationapp-0.0.1-SNAPSHOT.jar app.jar # <-- Vérifie bien ce nom
+COPY --from=build /app/target/stationapp-0.0.1-SNAPSHOT.jar app.jar 
 
 # Expose le port sur lequel ton application Spring Boot écoute (généralement 8080)
 EXPOSE 8080
