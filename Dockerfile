@@ -1,6 +1,6 @@
 # STAGE DE BUILD
 # Utilise une image Maven avec un JDK pour compiler ton application
-FROM maven:3-openjdk-17 AS build  # <-- MODIFIE CETTE LIGNE
+FROM maven:3-openjdk-17 AS build 
 
 # Définit le répertoire de travail dans le conteneur
 WORKDIR /app
